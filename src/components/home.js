@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './navbar';
 import './home.css';
-
+import { base_url } from './baseurl';
 const Home = () => {
     const [quote, setQuote] = useState("");
     const [author,setAuthor ] = useState("");
     useEffect(() => {
         const fetchQuote = async () => {
             try {
-                const response = await fetch('http://localhost:4000/');
+                const response = await fetch(`${base_url}`);
                 const data = await response.json();
                 setQuote(data.text);
                 setAuthor(data.author); 
@@ -22,7 +22,7 @@ const Home = () => {
 
     const handleClick = async () => {
         try {
-            const response = await fetch('http://localhost:4000/');
+            const response = await fetch(`${base_url}`);
             const data = await response.json();
             setQuote(data.text); 
             setAuthor(data.author); 

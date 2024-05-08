@@ -3,13 +3,14 @@ import './navbar.css';
 import { Link } from 'react-router-dom';
 import logo from './logo.jpeg'
 import { useNavigate } from 'react-router-dom';
+import { base_url } from './baseurl';
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const Navigate = useNavigate()
     const handleSearch = async () => {
         if (searchQuery.trim() !== "") {
             try {
-                const response = await fetch(`http://localhost:4000/search?q=${searchQuery}`);
+                const response = await fetch(`${base_url}search?q=${searchQuery}`);
                 const data = await response.json();
                 if(response.ok){
                     Navigate("/search", {state:data});
